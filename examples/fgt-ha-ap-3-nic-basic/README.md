@@ -3,3 +3,5 @@
 This example shows how to use the module to deploy FortiGate HA cluster with 2 network interfaces for connections (external and internal) and a single interface for HA sync and management. While a 4-NIC approach matches the usual deployments, since version 7.0 it is possible to use the same interface for both HA sync and dedicated management functions. Using a single NIC for HA sync and management is particulary useful if and additional interface is needed for hybrid connectivity over Interconnect but you want to use a 4 CPU instance size.
 
 The module will detect if you have 3 NICs and will collapse HA sync and management interfaces into one (port3), so explicitly setting variables `ha_port` and `mgmt_port` to "port3" is not required.
+
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/bartekmo/terraform-google-test-repo2.git&cloudshell_tutorial=examples/fgt-ha-ap-3nic-basic/tutorial.md)
