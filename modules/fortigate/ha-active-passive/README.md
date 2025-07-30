@@ -1,7 +1,7 @@
 # FortiGate Terraform module:
 ## HA Active-Passive cluster (FGCP in load balancer sandwich)
 
-![architecture diagram](https://raw.githubusercontent.com/bartekmo/terraform-google-test-repo2/14a308e350f5d1bef905e9494547f41ebe4ba036/modules/fortigate/ha-active-passive/./docs/diagram.png)
+![architecture diagram](https://raw.githubusercontent.com/bartekmo/terraform-google-test-repo2/14a308e350f5d1bef905e9494547f41ebe4ba036/docs/fgt-ha-ap-lb/diagram.png)
 
 This terraform module can be used to deploy the base part of FortiGate reference architecture consisting of:
 - 2 FortiGate VM instances - preconfigured in FGCP Active-Passive cluster
