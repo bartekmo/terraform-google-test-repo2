@@ -34,7 +34,7 @@ jobs:
         run: |
           for DIR in $SUBDIR_MODULE_HAAPLB/examples/*; do
             DIRNAME=`echo $DIR | sed "s|.*/\(.*\)|\1|"`
-            echo "mv $DIR examples/fgt-ha-ap-$DIRNAME"
+            mv $DIR examples/fgt-ha-ap-$DIRNAME
           done
           rmdir $SUBDIR_MODULE_HAAPLB/examples
 
