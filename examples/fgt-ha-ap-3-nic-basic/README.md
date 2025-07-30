@@ -4,4 +4,4 @@ This example shows how to use the module to deploy FortiGate HA cluster with 2 n
 
 The module will detect if you have 3 NICs and will collapse HA sync and management interfaces into one (port3), so explicitly setting variables `ha_port` and `mgmt_port` to "port3" is not required.
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/bartekmo/terraform-google-test-repo2.git&cloudshell_tutorial=examples/fgt-ha-ap-3nic-basic/tutorial.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/bartekmo/terraform-google-test-repo2.git&cloudshell_git_branch=merged&cloudshell_workspace=examples/fgt-ha-ap-3-nic-basic&ephemeral=true&cloudshell_tutorial=examples/fgt-ha-ap-3nic-basic/tutorial.md)
