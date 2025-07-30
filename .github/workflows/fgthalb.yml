@@ -8,7 +8,7 @@ on:
         required: true
         default: 'merged'
 env:
-  SUBDIR_MODULE_HAAPLB: "modules/fortigate/ha-active-passive"
+  SUBDIR_MODULE_HAAPLB: "modules/fgt-ha-active-passive"
 
 jobs:
   update-images:
@@ -29,6 +29,14 @@ jobs:
           git fetch fgt-ha-ap-lb
           git read-tree --prefix=$SUBDIR_MODULE_HAAPLB -u fgt-ha-ap-lb/main
       
+      - name: Move examples to global directory
+        id: fgt-ha-ap-lb-move-examples
+        run: |
+          find $SUBDIR_MODULE_HAAPLB/examples -type d -print0 | while IFS= read -r -d $'\0' file; do
+            mv $file examples/fgt-ha-ap-$file
+          done
+          rmdir $SUBDIR_MODULE_HAAPLB/examples
+
       - name: Find markdown files and convert URLs in images
         id: convert-images
         run: |
@@ -36,7 +44,7 @@ jobs:
           REPO_NAME="${{ github.event.repository.name }}"
           BRANCH_NAME="${{ github.event.inputs.branch }}"
           COMMIT_HASH="${{ github.sha }}"
-          BASE_URL="https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$COMMIT_HASH"
+          BASE_URL="https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$BRANCH_NAME"
           
           # Loop through all markdown files in the repository
           # and convert relative image paths.
