@@ -32,9 +32,9 @@ jobs:
       - name: Move examples to global directory
         id: fgt-ha-ap-lb-move-examples
         run: |
-          find $SUBDIR_MODULE_HAAPLB/examples -type d -print0 | while IFS= read -r -d $'\0' file; do
-            DIRNAME=`sed sed "s|.*/\(.*\)|\1|" $file`
-            mv $file examples/fgt-ha-ap-$DIRNAME
+          for DIR in $SUBDIR_MODULE_HAAPLB/examples/*; do
+            DIRNAME=`echo $DIR | sed "s|.*/\(.*\)|\1|"`
+            echo "mv $DIR examples/fgt-ha-ap-$DIRNAME"
           done
           rmdir $SUBDIR_MODULE_HAAPLB/examples
 
