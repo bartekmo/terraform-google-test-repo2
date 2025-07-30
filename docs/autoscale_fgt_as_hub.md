@@ -9,7 +9,7 @@ It uses `Google Cloud Function` and `Firestore Database` to designate a primary 
 
 
 **Architecture Diagram:**
-![Diagram](./images/autoscale_fgt_as_hub.svg)
+![Diagram](https://raw.githubusercontent.com/bartekmo/terraform-google-test-repo2/14a308e350f5d1bef905e9494547f41ebe4ba036/docs/./images/autoscale_fgt_as_hub.svg)
 
 The `Auto-Scale FortiGate Group` consists of dynamically scalable FortiGates, including one primary FortiGate VM and potentially multiple secondary FortiGate VMs. Configurations are set on the primary FortiGate and automatically synchronized across all secondary FortiGates. If the primary FortiGate fail, the Google Cloud Function will promote the oldest secondary FortiGate to take its place.
 
