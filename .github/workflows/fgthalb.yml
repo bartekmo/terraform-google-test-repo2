@@ -28,15 +28,6 @@ jobs:
           git remote add fgt-ha-ap-lb https://github.com/fortinet/terraform-google-fgt-ha-ap-lb.git
           git fetch fgt-ha-ap-lb
           git read-tree --prefix=$SUBDIR_MODULE_HAAPLB -u fgt-ha-ap-lb/main
-      
-      - name: Move examples to global directory
-        id: fgt-ha-ap-lb-move-examples
-        run: |
-          for DIR in $SUBDIR_MODULE_HAAPLB/examples/*; do
-            DIRNAME=`echo $DIR | sed "s|.*/\(.*\)|\1|"`
-            mv $DIR examples/fgt-ha-ap-$DIRNAME
-          done
-          rmdir $SUBDIR_MODULE_HAAPLB/examples
 
       - name: Find markdown files and convert URLs in images
         id: convert-images
@@ -75,6 +66,23 @@ jobs:
             # absolute to full url
             sed -i "s#git::github.com/fortinet/terraform-google-fgt-ha-ap-lb#$MODULE_TF_SRC#g" $file
           done
+
+      - name: Move examples to global directory
+        id: fgthaaplb-mv-examples
+        run: |
+          for DIR in $SUBDIR_MODULE_HAAPLB/examples/*; do
+            DIRNAME=`echo $DIR | sed "s|.*/\(.*\)|\1|"`
+            mv $DIR examples/fgt-ha-ap-$DIRNAME
+          done
+          rmdir $SUBDIR_MODULE_HAAPLB/examples
+
+      - name: Move fgt-image to global modules and make it internal
+        id: fgthaaplb-mv-fgt-image-get
+        run: |
+          mv -n $SUBDIR_MODULE_HAAPLB/modules/fgt-get-image modules/
+          mv -n modules/fgt-get-image/README.md modules/fgt-get-image/INFO.md
+          rm -rf $SUBDIR_MODULE_HAAPLB/modules/fgt-get-image
+          rmdir $SUBDIR_MODULE_HAAPLB/modules
 
       - name: Check for changes
         id: git-status
